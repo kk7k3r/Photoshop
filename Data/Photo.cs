@@ -1,4 +1,3 @@
-using MyPhotoshop.Data;
 using System;
 using System.ComponentModel;
 

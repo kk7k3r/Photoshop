@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyPhotoshop.Data
+namespace MyPhotoshop
 {
     public struct Pixel
     {
@@ -69,11 +69,24 @@ namespace MyPhotoshop.Data
 
         public static Pixel operator *(Pixel pixel, double c)
         {
-            return new Pixel(pixel.r * c, pixel.g * c, pixel.b * c);
+            return new Pixel(Pixel.Trim(pixel.r * c), Pixel.Trim(pixel.g * c), Pixel.Trim(pixel.b * c));
         }
         public static Pixel operator *(double c, Pixel pixel)
         {
             return pixel * c;
+        }
+
+        public static double Trim(double value)
+        {
+            if (value < 0)
+            {
+                return 0;
+            }
+            if (value > 1)
+            {
+                return 1;
+            }
+            return value;
         }
     }
 }
