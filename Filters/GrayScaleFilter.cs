@@ -1,11 +1,12 @@
 ﻿
+using MyPhotoshop.Filters;
+
 namespace MyPhotoshop
 {
     public class GrayScaleFilter : PixelFilter
     {
-        public override ParameterInfo[] GetParameters()
+        public GrayScaleFilter() : base(new EmptyParameters())
         {
-            return new ParameterInfo[] { };
         }
 
         public override string ToString()
@@ -14,7 +15,7 @@ namespace MyPhotoshop
         }
 
 
-        public override Pixel ProcessPixel(Pixel originalPixel, double[] parameters)
+        public override Pixel ProcessPixel(Pixel originalPixel, IParameters parameters)
         {
             var lightnessValue = (originalPixel.R + originalPixel.G + originalPixel.B) / 3;
            return new Pixel { R = lightnessValue, G = lightnessValue, B = lightnessValue };

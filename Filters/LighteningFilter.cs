@@ -3,23 +3,19 @@ namespace MyPhotoshop
 {
 	public class LighteningFilter : PixelFilter
 	{
-		public override ParameterInfo[] GetParameters()
-		{
-			return new[]
-			{
-				new ParameterInfo { Name="Коэффициент", MaxValue=10, MinValue=0, Increment=0.1, DefaultValue=1 }
+        public LighteningFilter() : base(new LighteningParameters())
+        {
 
-			};
-		}
+        }
 
-		public override string ToString()
+        public override string ToString()
 		{
 			return "Осветление/затемнение";
 		}
 
-		public override Pixel ProcessPixel(Pixel originalPixel, double[] parameters)
+		public override Pixel ProcessPixel(Pixel originalPixel, IParameters parameters)
 		{
-			return originalPixel * parameters[0];
+			return originalPixel * (parameters as LighteningParameters).Coefficient;
 		}
 	}
 }
