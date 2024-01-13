@@ -1,4 +1,4 @@
-using MyPhotoshop.Filters;
+using MyPhotoshop;
 using System;
 using System.Windows.Forms;
 

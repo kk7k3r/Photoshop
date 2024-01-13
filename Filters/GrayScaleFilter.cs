@@ -1,8 +1,9 @@
-﻿namespace MyPhotoshop.Filters
+﻿
+namespace MyPhotoshop
 {
-    internal class GrayScaleFilter : IFilter
+    public class GrayScaleFilter : PixelFilter
     {
-        public ParameterInfo[] GetParameters()
+        public override ParameterInfo[] GetParameters()
         {
             return new ParameterInfo[] { };
         }
@@ -11,16 +12,12 @@
         {
             return "Черно-белый фильтр";
         }
-        public Photo Process(Photo original, double[] parameters)
+
+
+        public override Pixel ProcessPixel(Pixel originalPixel, double[] parameters)
         {
-            var result = new Photo(original.width, original.height);
-            for (int x = 0; x < result.width; x++)
-                for (int y = 0; y < result.height; y++)
-                {
-                    var lightnessValue = (original[x, y].R + original[x, y].G + original[x,y].B) / 3;
-                    result[x, y] = new Pixel { R = lightnessValue, G = lightnessValue, B = lightnessValue };
-                }
-            return result;
+            var lightnessValue = (originalPixel.R + originalPixel.G + originalPixel.B) / 3;
+           return new Pixel { R = lightnessValue, G = lightnessValue, B = lightnessValue };
         }
     }
 }
