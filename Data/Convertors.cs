@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Drawing.Printing;
 
 namespace MyPhotoshop
 {
@@ -30,11 +31,10 @@ namespace MyPhotoshop
 			var bmp=new Bitmap(photo.width,photo.height);
 			for (int x=0;x<bmp.Width;x++)
 				for (int y=0;y<bmp.Height;y++)
-					bmp.SetPixel(x,y,Color.FromArgb (
-						ToChannel (photo[x, y].R),
-						ToChannel (photo[x, y].G),
-						ToChannel (photo[x, y].B) ));
-					       		
+                    bmp.SetPixel(x, y, Color.FromArgb(
+						ToChannel(photo[x, y].R),
+						ToChannel(photo[x, y].G),
+						ToChannel(photo[x, y].B)));	       		
 			return bmp;
 		}
 	}
