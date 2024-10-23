@@ -1,12 +1,14 @@
 ﻿using System;
+using MyPhotoshop.Data;
+using MyPhotoshop.Filters.Parameters;
 
-namespace MyPhotoshop
+namespace MyPhotoshop.Filters
 {
     public class PixelFilter<TParameters> : ParametrizedFilter<TParameters>
         where TParameters : IParameters, new()
     {
-        string name;
-        Func<Pixel, TParameters, Pixel> processPixel;
+        private readonly string name;
+        private readonly Func<Pixel, TParameters, Pixel> processPixel;
 
         public PixelFilter(string name, Func<Pixel, TParameters, Pixel> processPixel)
         {
@@ -15,11 +17,11 @@ namespace MyPhotoshop
         }
 
 
-        public override Photo Process(Photo original, TParameters parameters)
+        protected override Photo Process(Photo original, TParameters parameters)
         {
-            var result = new Photo(original.width, original.height);
-            for (int x = 0; x < result.width; x++)
-                for (int y = 0; y < result.height; y++)
+            var result = new Photo(original.Width, original.Height);
+            for (var x = 0; x < original.Width; x++)
+                for (var y = 0; y < original.Height; y++)
                 {
                     result[x, y] = processPixel(original[x, y], parameters);
                 }

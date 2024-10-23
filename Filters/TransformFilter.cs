@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Drawing;
+using MyPhotoshop.Data;
+using MyPhotoshop.Filters.Parameters;
 
-namespace MyPhotoshop
+namespace MyPhotoshop.Filters
 {
     public class TransformFilter : ParametrizedFilter<EmptyParameters>
     {
-        string name;
-        Func<Size, Size> sizeTransform;
-        Func<Point, Size, Point> pointTransform;
+        private readonly string name;
+        private readonly Func<Size, Size> sizeTransform;
+        private readonly Func<Point, Size, Point> pointTransform;
 
         public TransformFilter(string name, Func<Size, Size> sizeTransform, Func<Point, Size, Point> pointTransform)
         {
@@ -16,14 +18,14 @@ namespace MyPhotoshop
             this.pointTransform = pointTransform;
         }
 
-        public override Photo Process(Photo original, EmptyParameters parameters)
+        protected override Photo Process(Photo original, EmptyParameters parameters)
         {
-            var oldSize = new Size(original.width, original.height);
+            var oldSize = new Size(original.Width, original.Height);
             var newSize = sizeTransform(oldSize);
             var result = new Photo(newSize.Width, newSize.Height);
-            for (int x = 0; x < result.width; x++)
+            for (var x = 0; x < result.Width; x++)
             {
-                for (int y = 0; y < result.height; y++)
+                for (var y = 0; y < result.Height; y++)
                 {
                     var point = new Point(x, y);
                     var oldPoint = pointTransform(point, oldSize);

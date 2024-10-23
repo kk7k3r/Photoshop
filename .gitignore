@@ -1,5 +1,7 @@
-bin
-obj
+bin/
+obj/
 *.suo
-/Tasks.txt
+.vs/
+.idea/
+Tasks.txt
 TestResults/

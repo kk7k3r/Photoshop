@@ -1,24 +1,23 @@
-using System;
+using MyPhotoshop.Data;
+using MyPhotoshop.Filters.Parameters;
 
-namespace MyPhotoshop
+namespace MyPhotoshop.Filters
 {
-
-	
 	public interface IFilter
 	{
-        /// <summary>
-        /// Этот метод должен возвращать описание параметров, которые появляются в NumericUpDown-контроле
-        /// снизу от контрола выбора фильтра
-        /// </summary>
-        /// <returns></returns>
-  	    ParameterInfo[] GetParameters();
-        /// <summary>
-        /// Этот метод принимает фотографию, которую надо обрабатывать, и численные значения всех параметров
-        /// Длина массива parameters в точности равна длине массива, возвращаемого методом GetParameters
-        /// </summary>
-        /// <param name="original"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
+		/// <summary>
+		/// Р­С‚РѕС‚ РјРµС‚РѕРґ РґРѕР»Р¶РµРЅ РІРѕР·РІСЂР°С‰Р°С‚СЊ РѕРїРёСЃР°РЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ, РєРѕС‚РѕСЂС‹Рµ РїРѕСЏРІР»СЏСЋС‚СЃСЏ РІ NumericUpDown-РєРѕРЅС‚СЂРѕР»Рµ
+		/// СЃРЅРёР·Сѓ РѕС‚ РєРѕРЅС‚СЂРѕР»Р° РІС‹Р±РѕСЂР° С„РёР»СЊС‚СЂР°
+		/// </summary>
+		/// <returns></returns>
+		ParameterInfo[] GetParameters();
+		/// <summary>
+		/// Р­С‚РѕС‚ РјРµС‚РѕРґ РїСЂРёРЅРёРјР°РµС‚ С„РѕС‚РѕРіСЂР°С„РёСЋ, РєРѕС‚РѕСЂСѓСЋ РЅР°РґРѕ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ, Рё С‡РёСЃР»РµРЅРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РІСЃРµС… РїР°СЂР°РјРµС‚СЂРѕРІ
+		/// Р”Р»РёРЅР° РјР°СЃСЃРёРІР° parameters РІ С‚РѕС‡РЅРѕСЃС‚Рё СЂР°РІРЅР° РґР»РёРЅРµ РјР°СЃСЃРёРІР°, РІРѕР·РІСЂР°С‰Р°РµРјРѕРіРѕ РјРµС‚РѕРґРѕРј GetParameters
+		/// </summary>
+		/// <param name="original"></param>
+		/// <param name="parameters"></param>
+		/// <returns></returns>
 		Photo Process(Photo original, double[] parameters);
 	}
 }

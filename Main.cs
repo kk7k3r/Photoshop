@@ -1,7 +1,9 @@
-using MyPhotoshop;
 using System;
 using System.Windows.Forms;
 using System.Drawing;
+using MyPhotoshop.Data;
+using MyPhotoshop.Filters;
+using MyPhotoshop.Filters.Parameters;
 
 namespace MyPhotoshop
 {
@@ -11,14 +13,14 @@ namespace MyPhotoshop
 		public static void Main(string[] args)
 		{
 			var window = new MainWindow();
-			window.AddFilter(new PixelFilter<LighteningParameters>("Îñâåòëåíèå/Çàòåìíåíèå", (pixel, parameters) => pixel * parameters.Coefficient));
-			window.AddFilter(new PixelFilter<EmptyParameters>("×åðíî-áåëûé ôèëüòð", (pixel, parameters) =>
+			window.AddFilter(new PixelFilter<LighteningParameters>("ÐžÑÐ²ÐµÑ‚Ð»ÐµÐ½Ð¸Ðµ/Ð·Ð°Ñ‚ÐµÐ¼Ð½ÐµÐ½Ð¸Ðµ", (pixel, parameters) => pixel * parameters.Coefficient));
+			window.AddFilter(new PixelFilter<EmptyParameters>("ÐžÑ‚Ñ‚ÐµÐ½ÐºÐ¸ ÑÐµÑ€Ð¾Ð³Ð¾", (pixel, parameters) =>
 			{
 				var lighteness = (pixel.R + pixel.G + pixel.B) / 3;
 				return new Pixel(lighteness, lighteness, lighteness);
 			}));
-			window.AddFilter(new TransformFilter("Îòðàçèòü ïî ãîðèçîíòàëè", (size) => size, (point, size) => new Point(size.Width - point.X - 1, point.Y)));
-            window.AddFilter(new TransformFilter("Ïîâåðíóòü ïðîòèâ ÷àñîâîé ñòðåëêè", (size) => new Size(size.Height, size.Width), (point, size) => new Point(point.Y, point.X)));
+			window.AddFilter(new TransformFilter("ÐžÑ‚Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð¿Ð¾ Ð³Ð¾Ñ€Ð¸Ð·Ð¾Ð½Ñ‚Ð°Ð»Ð¸", (size) => size, (point, size) => new Point(size.Width - point.X - 1, point.Y)));
+            window.AddFilter(new TransformFilter("ÐŸÐ¾Ð²Ð¾Ñ€Ð¾Ñ‚ Ð½Ð° 90 Ð³Ñ€Ð°Ð´ÑƒÑÐ¾Ð²", (size) => new Size(size.Height, size.Width), (point, size) => new Point(point.Y, point.X)));
             Application.Run (window);		
 		}	
 	}

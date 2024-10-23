@@ -1,33 +1,23 @@
-using System;
-using System.ComponentModel;
-
-namespace MyPhotoshop
+namespace MyPhotoshop.Data
 {
 	public class Photo
 	{
-		public readonly int width;
-		public readonly int height;
+		public readonly int Width;
+		public readonly int Height;
 		private readonly Pixel[,] data;
 
 		public Photo(int width, int height)
 		{
-			this.width = width;
-			this.height = height;
+			this.Width = width;
+			this.Height = height;
 			data = new Pixel[width, height];
 		}
 
         public Pixel this[int x, int y]
 		{
-			get
-			{
-				return data[x, y];
-			}
-			set
-			{
-				data[x, y] = value;
-			}
+			get => data[x, y];
+			set => data[x, y] = value;
 		}
-
     }
 }
 

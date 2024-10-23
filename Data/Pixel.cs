@@ -1,92 +1,77 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MyPhotoshop
+namespace MyPhotoshop.Data
 {
     public struct Pixel
     {
-
-        public Pixel(double r, double g, double b) : this()
+        private double r;
+        private double g;
+        private double b;
+        public double R
         {
+            get => r;
+            private set
+            {
+                CheckChannel(value);
+                r = value;
+            }
+        }
+        
+        public double G
+        {
+            get => g;
+            private set
+            {
+                CheckChannel(value);
+                b = value;
+            }
+        }
+        
+        public double B
+        {
+            get => b;
+            private set
+            {
+                CheckChannel(value);
+                b = value;
+            }
+        }
+        public Pixel(double r, double g, double b)
+        {
+            this.r = this.g = this.b = 0;
             R = r;
             G = g;
             B = b;
         }
 
-        private double r;
-        public double R
+        private static void CheckChannel(double channel)
         {
-            get
-            {
-                return r;
-            }
-            set
-            {
-                r = CheckValue(value);
-            }
-        }
-        private double g;
-        public double G
-        {
-            get
-            {
-                return g;
-            }
-            set
-            {
-                g = CheckValue(value);
-            }
-        }
-        private double b;
-        public double B
-        {
-            get
-            {
-                return b;
-            }
-            set
-            {
-                b = CheckValue(value);
-            }
-        }
-
-        private double CheckValue(double value)
-        {
-            if (value > 1 || value < 0)
+            if (channel < 0 || channel > 1)
             {
                 throw new ArgumentException();
             }
-
-            else
-            {
-                return value;
-            }
         }
 
-        public static Pixel operator *(Pixel pixel, double c)
+        public static Pixel operator *(Pixel pixel, double parameter)
         {
-            return new Pixel(Pixel.Trim(pixel.r * c), Pixel.Trim(pixel.g * c), Pixel.Trim(pixel.b * c));
+            return new Pixel(Trim(pixel.R * parameter), Trim(pixel.G * parameter), 
+                Trim(pixel.B * parameter));
         }
+        
+        public static Pixel operator /(Pixel pixel, double parameter)
+        {
+            return new Pixel(Trim(pixel.R / parameter), Trim(pixel.G / parameter), 
+                Trim(pixel.B / parameter));
+        }
+        
         public static Pixel operator *(double c, Pixel pixel)
         {
             return pixel * c;
         }
 
-        public static double Trim(double value)
+        private static double Trim(double channel)
         {
-            if (value < 0)
-            {
-                return 0;
-            }
-            if (value > 1)
-            {
-                return 1;
-            }
-            return value;
+            return (channel < 0) ? 0 : (channel > 1) ? 1 : channel;
         }
     }
 }
