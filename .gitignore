@@ -5,3 +5,4 @@ obj/
 .idea/
 Tasks.txt
 TestResults/
+*.jpg

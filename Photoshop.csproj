@@ -46,8 +46,13 @@
     <Compile Include="Filters\Parameters\IParameters.cs" />
     <Compile Include="Filters\Parameters\LighteningParameters.cs" />
     <Compile Include="Filters\Parameters\ParameterInfo.cs" />
+    <Compile Include="Filters\Parameters\RotationParameters.cs" />
     <Compile Include="Filters\ParametrizedFilter.cs" />
     <Compile Include="Filters\PixelFilter.cs" />
+    <Compile Include="Filters\Transformers\FreeTransformer.cs" />
+    <Compile Include="Filters\Transformers\ITransformer.cs" />
+    <Compile Include="Filters\Transformers\RotationTransformer.cs" />
+    <Compile Include="Filters\TransformFilter(TParameters).cs" />
     <Compile Include="Filters\TransformFilter.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Window\MainWindow.cs">

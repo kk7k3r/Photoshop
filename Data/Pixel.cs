@@ -23,7 +23,7 @@ namespace MyPhotoshop.Data
             private set
             {
                 CheckChannel(value);
-                b = value;
+                g = value;
             }
         }
         
