@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Pixel.cs" />
+    <Compile Include="Filters\Parameters\DefaultParametersHandler.cs" />
     <Compile Include="Filters\Parameters\EmptyParameters.cs" />
     <Compile Include="Filters\Parameters\IParameters.cs" />
+    <Compile Include="Filters\Parameters\IParametersHandler.cs" />
     <Compile Include="Filters\Parameters\LighteningParameters.cs" />
     <Compile Include="Filters\Parameters\ParameterInfo.cs" />
     <Compile Include="Filters\Parameters\RotationParameters.cs" />
